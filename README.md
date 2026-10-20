@@ -2,6 +2,8 @@
 
 Personal portfolio built with React 18, Vite, Tailwind CSS v4 and Framer Motion.
 
+**Live:** https://yuvakiranpalla.vercel.app
+
 ![Portfolio home: "From ideas into blazing web apps" with a typing terminal card](docs/screenshots/hero.jpg)
 
 ## Screenshots
