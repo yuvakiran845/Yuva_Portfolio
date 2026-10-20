@@ -17,7 +17,7 @@ export const site = {
   description:
     'Portfolio of Yuva Kiran Palla, a Computer Science Engineering student at SVCE Tirupati building full-stack web applications with the MERN stack.',
   // Your live address (used by link previews, robots.txt and the sitemap).
-  url: 'https://yuvakiranpalla.vercel.app',
+  url: 'https://yuvakiran.vercel.app',
   email: 'yuvak2484@gmail.com',
   resume: '/resume.pdf',
   resumeFileName: 'Yuva-Kiran-Palla-Resume.pdf',
