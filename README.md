@@ -2,6 +2,30 @@
 
 Personal portfolio built with React 18, Vite, Tailwind CSS v4 and Framer Motion.
 
+![Portfolio home: "From ideas into blazing web apps" with a typing terminal card](docs/screenshots/hero.jpg)
+
+## Screenshots
+
+| About | Projects |
+| --- | --- |
+| ![About section with photo, intro and education](docs/screenshots/about.jpg) | ![Projects section with the MyJobTracker card and live preview](docs/screenshots/projects.jpg) |
+
+| Experience | Skills |
+| --- | --- |
+| ![Experience section with SmartBridge and byteXL internships](docs/screenshots/experience.jpg) | ![Skills section with pastel skill cards](docs/screenshots/skills.jpg) |
+
+| Certifications | Contact |
+| --- | --- |
+| ![Certifications and achievements section](docs/screenshots/certifications.jpg) | ![Contact section with social links and message form](docs/screenshots/contact.jpg) |
+
+**On mobile**
+
+<p>
+  <img src="docs/screenshots/mobile-hero.jpg" width="260" alt="Mobile view of the home section" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/mobile-projects.jpg" width="260" alt="Mobile view of a project card" />
+</p>
+
 ## Run locally
 
 ```bash
@@ -65,4 +89,5 @@ src/
   lib/                  icon and color maps
   index.css             design tokens (Tailwind @theme) and shared styles
 docs/DESIGN_NOTES.md    what was matched from the reference design
+docs/screenshots/       images used in this README
 ```
