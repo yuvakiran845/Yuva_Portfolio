@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens (measured from the reference design)
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #f5f3ea;
+  --color-cream-2: #ece9dc;
+  --color-ink: #1f1f1f;
+  --color-body: #3a3a3a;
+  --color-muted: #5c5a52;
+  --color-night: #141414;
+  --color-night-2: #1d1d1d;
+  --color-pop: #c9b6ff;
+  --color-cursor: #e0fd72;
+
+  /* pastel card colors */
+  --color-p-lilac: #e4dcff;
+  --color-p-lime: #e6f99d;
+  --color-p-sky: #cfe2ff;
+  --color-p-pink: #ffd9de;
+  --color-p-mint: #cdf3dc;
+  --color-p-butter: #f3ea9f;
+
+  --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-lg: 7px 7px 0 0 var(--color-ink);
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-blink: blink 1s steps(2, start) infinite;
+  --animate-morph: morph 16s ease-in-out infinite alternate;
+  --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes ping-slow {
+    75%,
+    100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @keyframes morph {
+    0% {
+      border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
+      transform: rotate(0deg);
+    }
+    50% {
+      border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%;
+      transform: rotate(12deg) scale(1.04);
+    }
+    100% {
+      border-radius: 45% 55% 62% 38% / 40% 52% 48% 60%;
+      transform: rotate(-8deg);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    font-family: var(--font-sans);
+    color: var(--color-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    word-spacing: 0.05em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-pop);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .bg-night :focus-visible {
+    outline-color: var(--color-pop);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Recurring pieces
+   ------------------------------------------------------------------ */
+@layer components {
+  /* Lavender block behind a highlighted heading word */
+  .hl {
+    background: var(--color-pop);
+    color: var(--color-ink);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 0.12em;
+    padding: 0 0.12em 0.04em;
+    line-height: 1.12;
+    white-space: nowrap;
+  }
+
+  /* Small rotated label with a hard shadow */
+  .sticker {
+    display: inline-block;
+    border: 2px solid var(--color-ink);
+    border-radius: 8px;
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+    padding: 0.2rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    transition: rotate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Neo-brutalist card: lifts toward the top-left while the shadow grows */
+  .card-hard {
+    box-shadow: var(--shadow-hard);
+    transition:
+      translate 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-hard:hover {
+    translate: -3px -3px;
+    box-shadow: var(--shadow-hard-lg);
+  }
+
+  /* Faint square grid behind the hero */
+  .bg-grid {
+    background-image:
+      linear-gradient(90deg, rgb(31 31 31 / 0.05) 1px, transparent 1px),
+      linear-gradient(rgb(31 31 31 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Custom cursor (only enabled on devices with a fine pointer)
+   ------------------------------------------------------------------ */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none;
+}
+html.has-custom-cursor :is(input, textarea, select) {
+  cursor: text;
+}
+
+.custom-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-cursor);
+  opacity: 0;
+  transition:
+    width 0.2s,
+    height 0.2s,
+    background-color 0.2s,
+    opacity 0.2s;
+}
+.custom-cursor[data-visible="true"] {
+  opacity: 1;
+}
+.custom-cursor[data-big="true"] {
+  width: 54px;
+  height: 54px;
+  background: rgb(224 253 114 / 0.55);
+}
+.custom-cursor[data-pressed="true"] {
+  width: 12px;
+  height: 12px;
+}
+.custom-cursor[data-big="true"][data-pressed="true"] {
+  width: 44px;
+  height: 44px;
+}
+.custom-cursor[data-text="true"] {
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion: stop decorative animation everywhere
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
